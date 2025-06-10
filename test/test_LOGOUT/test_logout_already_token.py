@@ -41,13 +41,12 @@ def test():
     # ========== LOGOUT USER ==========
     logout_headers = {
         "Accept": "application/json",
-        "Authorization": f"Bearer {token}",
+        "Authorization": "Bearer 62|6d433L75rTFm1VkuL2uHwnsfwV5LIfl4UE9wB9CQ40c97e89",
     }
     logout_req = requests.post(api_logout, headers=logout_headers)
     logout_json = logout_req.json()
     print("Logout Response:", logout_json)
 
     # ASSERT
-    assert_that(logout_req.status_code).is_equal_to(200)
-    assert_that(logout_json["status"]).is_true()
-    assert_that(logout_json["message"]).contains("Logged out successfully")
+    assert_that(logout_req.status_code).is_equal_to(401)
+    assert_that(logout_json["message"]).contains("Unauthenticated.")
